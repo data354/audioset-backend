@@ -35,11 +35,7 @@ class UserService {
 
 
     // Methods for deleting User
-
-    async deleteAll(): Promise<BatchPayload> {
-        return prisma.user.deleteMany({});
-    }
-
+    
     async deleteById(id: number): Promise<User> {
         return prisma.user.delete({ where: { id_: id } });
     }
