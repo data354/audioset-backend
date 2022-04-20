@@ -1,5 +1,5 @@
 import express from "express";
-import prisma from "../configs/db";
+import prisma from "../configs";
 import onFinished from "on-finished";
 
 export default function () {

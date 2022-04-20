@@ -1,4 +1,4 @@
-import prisma from "../../configs/db";
+import prisma from "../../configs";
 import { Sound, Prisma as PTypes } from "@prisma/client";
 class SoundService {
 

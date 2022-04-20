@@ -1,6 +1,5 @@
 import express from "express";
 import multer from "multer";
-import PTypes from "../../configs/db/types"
 import soundService from "./sound.service"
 import { Storage } from "@google-cloud/storage"
 import { cwd } from "process";
@@ -9,8 +8,6 @@ import { format } from "util";
 import { checkToken } from "cqx-secure";
 const router: express.Router = require("express").Router();
 const sound = new soundService();
-
-type PError = PTypes.PrismaClientKnownRequestError | Error
 
 let storage = new Storage({ projectId: "audiosetrecorder-2022", keyFilename: join(cwd(), ".cqx/keys/gs.json") })
 let bucket = storage.bucket("audioset-recorder")
@@ -120,7 +117,7 @@ router
     .get("/count/unrecorded", async (req: express.Request, res: express.Response) => {
 
         sound.count({ recorded: false })
-            .then((data) => { res.json(data); })
+            .then((data) => { res.status(200).json(data); })
             .catch((error: Error) => {
                 console.error(error);
                 res.status(500).json({ error: "InternalError", message: "Something wrong" });

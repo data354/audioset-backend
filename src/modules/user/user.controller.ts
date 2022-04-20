@@ -1,12 +1,9 @@
 import { giveToken } from "cqx-secure";
 import express from "express";
-import PTypes from "../../configs/db/types"
 import userService from "./user.service"
 
 const router: express.Router = require("express").Router();
 const user = new userService();
-
-type PError = PTypes.PrismaClientKnownRequestError | Error
 
 router
 

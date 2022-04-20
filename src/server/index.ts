@@ -3,7 +3,7 @@
 import http from "http";
 import path from "path";
 import allApp from "./_globalRoutes";
-import db from "../configs/db";
+import db from "../configs";
 
 const server = http.createServer(allApp);
 
