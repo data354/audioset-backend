@@ -1,7 +1,5 @@
 import prisma from "../../configs/db";
-import { User } from "@prisma/client";
-import PTypes, { BatchPayload } from "../../configs/db/types"
-import { giveToken } from "cqx-secure";
+import { User, Prisma as PTypes } from "@prisma/client";
 
 class UserService {
 
@@ -19,27 +17,9 @@ class UserService {
         return prisma.user.findMany(args);
     }
 
-    // async countRecord(id: number): Promise<number> {
-    //     return prisma.record.count({select : {}})
-    // }
-
     async getById(id: number): Promise<User | null> {
         return prisma.user.findUnique({ where: { id_: id } });
     }
-
-    // Methods for updating User information
-
-    async updateById(id: number, args: PTypes.UserUpdateInput): Promise<User> {
-        return prisma.user.update({ where: { id_: id }, data: args });
-    }
-
-
-    // Methods for deleting User
-    
-    async deleteById(id: number): Promise<User> {
-        return prisma.user.delete({ where: { id_: id } });
-    }
-
 }
 
 export default UserService;

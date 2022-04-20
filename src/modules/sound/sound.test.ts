@@ -6,7 +6,7 @@ describe("sound routes tester", () => {
 
     it("/POST Create new sound", async () => {
 
-        let res = await request
+        await request
             .post(`/sound`)
             .send({})
             .expect("Content-Type", /json/)
@@ -15,36 +15,37 @@ describe("sound routes tester", () => {
     });
 
     it("/GET get all sound", async () => {
-        let res = await request
+
+        await request
             .get(`/sound`)
             .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
+            .expect(200)
     });
 
     it("/GET/id Show specify sound", async () => {
-        let res = await request
+
+        await request
             .get(`/sound/1`)
             .expect("Content-Type", /json/)
+            .expect(200)
 
-        expect(res.status).not.toBe(500);
     });
 
     it("/PUT/id Modify specify sound", async () => {
-        let res = await request
+
+        await request
             .put(`/sound/1`)
             .send({})
             .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
+            .expect(201)
     });
 
     it("/DELETE/id Delete specify sound", async () => {
-        let res = await request
+
+        await request
             .del(`/sound/1`)
             .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
-    });
+            .expect(200)
+    })
 
 });

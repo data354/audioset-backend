@@ -1,58 +1,66 @@
 import app from "../../server/_globalRoutes";
+import { User } from "@prisma/client"
 
 describe("user routes tester", () => {
 
     const request = require("supertest")(app);
+    let user: User
 
-    it("/POST Create new user", async () => {
+    describe("/POST Create new user", () => {
+        it("Try with expected data", async () => {
+            user = (await request
+                .post(`/user`)
+                .send({
+                    name: "edy",
+                    year: 23,
+                    genre: "M"
+                })
+                .expect("Content-Type", /json/)
+                .expect(201)
+            )._body.data
 
-        let res = await request
-            .post(`/user`)
-            .send({
-                name: "edy",
-                year: 23,
-                genre: "M"
-            })
-            .expect("Content-Type", /json/)
 
-        expect(res.status).not.toBe(500);
-    });
+        });
+        it("Send false data", async () => {
+            await request
+                .post(`/user`)
+                .send({
+                    name: "edy",
+                })
+                .expect("Content-Type", /json/)
+                .expect(500)
+        });
+    })
 
-    it("/GET get all user", async () => {
 
-        let res = await request
-            .get(`/user`)
-            .expect("Content-Type", /json/)
+    describe("/GET User", () => {
+        it("Try to get all user", async () => {
+            await request
+                .get(`/user`)
+                .expect("Content-Type", /json/)
+                .expect(200)
 
-        expect(res.status).not.toBe(500);
-    });
+        });
 
-    it("/GET/id Show specify user", async () => {
+        it("/GET/id Show specify user", async () => {
+            await request
+                .get(`/user/${user.id_}`)
+                .expect("Content-Type", /json/)
+                .expect(200)
+        });
 
-        let res = await request
-            .get(`/user/1`)
-            .expect("Content-Type", /json/)
+        it("/GET/id Try to get user xho not exist", async () => {
+            await request
+                .get(`/user/0`)
+                .expect("Content-Type", /json/)
+                .expect(404)
+        });
 
-        expect(res.status).not.toBe(500);
-    });
-
-    it("/PUT/id Modify specify user", async () => {
-
-        let res = await request
-            .put(`/user/1`)
-            .send({})
-            .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
-    });
-
-    it("/DELETE/id Delete specify user", async () => {
-
-        let res = await request
-            .del(`/user/1`)
-            .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
-    });
-
-});
+        it("/GET/id Try with unexpected id", async () => {
+            await request
+                .get(`/user/un`)
+                .expect("Content-Type", /json/)
+                .expect(500)
+        });
+    })
+})

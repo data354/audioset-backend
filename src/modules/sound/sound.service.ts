@@ -1,6 +1,5 @@
 import prisma from "../../configs/db";
-import { Sound } from "@prisma/client";
-import PTypes, { BatchPayload } from "../../configs/db/types"
+import { Sound, Prisma as PTypes } from "@prisma/client";
 class SoundService {
 
     constructor() { }
@@ -33,7 +32,7 @@ class SoundService {
 
     // Methods for deleting Sound
 
-    async deleteAll(): Promise<BatchPayload> {
+    async deleteAll(): Promise<PTypes.BatchPayload> {
         return prisma.sound.deleteMany({});
     }
 
