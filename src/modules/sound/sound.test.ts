@@ -1,12 +1,12 @@
-import { API_URL } from "../../configs/constants";
+import app from "../../server";
 
 describe("sound routes tester", () => {
 
-    const supertest = require("supertest")(API_URL);
+    const request = require("supertest")(app);
 
     it("/POST Create new sound", async () => {
 
-        let res = await supertest
+        let res = await request
             .post(`/sound`)
             .send({})
             .expect("Content-Type", /json/)
@@ -15,7 +15,7 @@ describe("sound routes tester", () => {
     });
 
     it("/GET get all sound", async () => {
-        let res = await supertest
+        let res = await request
             .get(`/sound`)
             .expect("Content-Type", /json/)
 
@@ -23,7 +23,7 @@ describe("sound routes tester", () => {
     });
 
     it("/GET/id Show specify sound", async () => {
-        let res = await supertest
+        let res = await request
             .get(`/sound/1`)
             .expect("Content-Type", /json/)
 
@@ -31,7 +31,7 @@ describe("sound routes tester", () => {
     });
 
     it("/PUT/id Modify specify sound", async () => {
-        let res = await supertest
+        let res = await request
             .put(`/sound/1`)
             .send({})
             .expect("Content-Type", /json/)
@@ -40,7 +40,7 @@ describe("sound routes tester", () => {
     });
 
     it("/DELETE/id Delete specify sound", async () => {
-        let res = await supertest
+        let res = await request
             .del(`/sound/1`)
             .expect("Content-Type", /json/)
 
