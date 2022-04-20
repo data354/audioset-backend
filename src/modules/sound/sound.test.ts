@@ -1,4 +1,4 @@
-import app from "../../server";
+import app from "../../server/_globalRoutes";
 
 describe("sound routes tester", () => {
 
@@ -10,8 +10,8 @@ describe("sound routes tester", () => {
             .post(`/sound`)
             .send({})
             .expect("Content-Type", /json/)
+            .expect(201)
 
-        expect(res.status).not.toBe(500);
     });
 
     it("/GET get all sound", async () => {
