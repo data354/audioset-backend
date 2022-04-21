@@ -123,6 +123,19 @@ describe("sound routes tester", () => {
                 .expect(500)
 
         });
+
+        test("/POST with missing soundID", async () => {
+
+            await request
+                .post(`/sound/send`)
+                .set("X-Access-Token", token)
+                .attach("audio", join(__dirname, "sound.docs.json"), {filename: "testaudio"})
+                .set("Content-type", "multipart/form-data")
+                .field("userId", String(user.id_))
+                .expect(400)
+
+        });
+
     })
 
     describe("Sound counter", () => {

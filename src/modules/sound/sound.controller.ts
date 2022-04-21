@@ -6,6 +6,8 @@ import { cwd } from "process";
 import { join } from "path";
 import { format } from "util";
 import { checkToken } from "cqx-secure";
+import checkDTO from "../../middlewares/checkDTO";
+import { createSoundDTO } from "./sound.dto";
 const router: express.Router = require("express").Router();
 const sound = new soundService();
 
@@ -27,6 +29,7 @@ router
     .use(checkToken("user"))
 
     .use("/send", upload.single("audio"))
+    .use("/send", checkDTO(createSoundDTO))
     .post("/send", async (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
         if (!req.file) {
@@ -40,7 +43,8 @@ router
         const blobStream = blob.createWriteStream();
 
         blobStream.on('error', err => {
-            next(err);
+            console.error(err);
+            res.status(500).json({ file: err.name, message: err.message })
         });
 
         blobStream.on('finish', async () => {
