@@ -83,7 +83,7 @@ router
     .get("/begin/:userId", async (req: express.Request, res: express.Response) => {
 
         sound.beginRecord(Number(req.params.userId))
-            .then((data) => { res.json(data); })
+            .then((data) => { res.status(200).json(data); })
             .catch((error: Error) => {
                 console.error(error);
                 res.status(500).json({ error: "InternalError", message: "Something wrong" });
@@ -100,7 +100,7 @@ router
     .get("/count/recorded/:userId", async (req: express.Request, res: express.Response) => {
 
         sound.count({ recorded: true, UserId_: Number(req.params.userId) })
-            .then((data) => { res.json(data); })
+            .then((data) => { res.status(200).json(data); })
             .catch((error: Error) => {
                 console.error(error);
                 res.status(500).json({ error: "InternalError", message: "Something wrong" });

@@ -18,8 +18,6 @@ describe("user routes tester", () => {
                 .expect("Content-Type", /json/)
                 .expect(201)
             )._body.data
-
-
         });
         it("Send false data", async () => {
             await request

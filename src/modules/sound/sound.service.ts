@@ -1,14 +1,8 @@
-import prisma from "../../configs";
+import prisma from "../../configs/db";
 import { Sound, Prisma as PTypes } from "@prisma/client";
 class SoundService {
 
     constructor() { }
-
-    // Methods for creating Sound
-
-    async addOne(data: PTypes.SoundCreateInput): Promise<Sound> {
-        return prisma.sound.create({ data });
-    }
 
     // Methods for get Sound information
 
@@ -24,25 +18,8 @@ class SoundService {
         return prisma.sound.findUnique({ where: { id_: id }, include: { User_: true } });
     }
 
-    // Methods for updating Sound information
-
-    async updateById(id: number, args: PTypes.SoundUpdateInput): Promise<Sound> {
-        return prisma.sound.update({ where: { id_: id }, data: args });
-    }
-
-    // Methods for deleting Sound
-
-    async deleteAll(): Promise<PTypes.BatchPayload> {
-        return prisma.sound.deleteMany({});
-    }
-
-    async deleteById(id: number): Promise<Sound> {
-        return prisma.sound.delete({ where: { id_: id } });
-    }
-
     async saveSound(soundId: number, audioLink: string | undefined, UserId: number): Promise<PTypes.SoundCreateInput | null> {
         return prisma.sound.update({ data: { isRecording: false, recorded: true, audioLink, User_: { connect: { id_: UserId } } }, where: { id_: soundId } });
-        // return this.beginRecord(UserId)
     }
 
     async beginRecord(UserId: number): Promise<PTypes.SoundCreateInput | null> {

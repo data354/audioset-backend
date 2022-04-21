@@ -1,5 +1,5 @@
 import express from "express";
-import prisma from "../configs";
+import prisma from "../configs/db";
 import onFinished from "on-finished";
 
 export default function () {
@@ -12,7 +12,7 @@ export default function () {
                         protocol: req.protocol,
                         method: req.method,
                         hostname: req.hostname,
-                        path: req.originalUrl || req.url,
+                        path: req.originalUrl,
                         httpVersion: `${req.httpVersionMajor}.${req.httpVersionMinor}`,
                         statusCode: res.statusCode,
                         userIp: req.ip,
