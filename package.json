@@ -4,7 +4,8 @@
     "main": "./index.ts",
     "private": false,
     "scripts": {
-        "test": "jest --ci --reporters=default --reporters=jest-junit",
+        "test": "jest --coverage",
+        "test:junit": "jest --ci --reporters=default --reporters=jest-junit",
         "start:dev": "nodemon ./index.ts",
         "start:debug": "DEBUG=* nodemon ./index.ts",
         "db:update": "prisma migrate dev && cqx update",
@@ -63,7 +64,8 @@
             "json",
             "ts"
         ],
-        "rootDir": "src",
+        "rootDir": ".",
+        "roots": ["./src/", "./tests/"],
         "testRegex": ".*\\.test\\.ts$",
         "transform": {
             "^.+\\.(t|j)s$": "ts-jest"

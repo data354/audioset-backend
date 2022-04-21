@@ -9,7 +9,7 @@ const server = http.createServer(allApp);
 
 require("dotenv").config({ path: path.resolve(process.cwd(), ".info.env") });
 
-const port = normalizePort(process.env.PORT || "8080") ;
+const port = normalizePort(process.env.PORT || "8080");
 const apiName = process.env.API_NAME;
 
 server.listen(port);
@@ -24,7 +24,7 @@ function normalizePort(val: string) {
     return false;
 }
 
-function onError(error:any) {
+function onError(error: any) {
     if (error.syscall !== "listen") { throw error; }
     const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
     switch (error.code) {
@@ -43,10 +43,11 @@ function onError(error:any) {
     process.exit(1);
 }
 
-function onClose() { 
+function onClose() {
     db.$disconnect();
     process.exit(0);
 }
+
 function onListenning() {
     db.$connect()
         .then(() => { console.log("Database Connected"); })

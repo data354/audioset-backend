@@ -106,3 +106,4 @@ dist
 secrets.json
 uploads
 .cqx/keys/gs.json
+junit.xml
