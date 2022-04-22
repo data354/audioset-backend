@@ -33,17 +33,15 @@ services:
       - 61232:5432
     volumes:
       - soundSetApi_vol_staging:/var/lib/postgresql/data
-
-  soundSetApi_prometheus:
-      image: prom/prometheus
-      container_name: soundSetApi_prometheus
-      ports:
-        - 9090:9090
-      volumes:
-        - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      depends_on:
-        - soundSetApi
-
+  
+  gcp_storage_local:
+    image: fsouza/fake-gcs-server:latest
+    container_name: local_storage_gcp
+    ports:
+      - 4443:4443
+    command: ["-scheme", "http"]
+    volumes:
+      - ./uploads:/data
 
 volumes:
   soundSetApi_vol_dev:
