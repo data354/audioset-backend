@@ -103,6 +103,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+#other file
 secrets.json
 uploads
 .cqx/keys/gs.json

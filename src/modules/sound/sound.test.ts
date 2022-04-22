@@ -1,12 +1,13 @@
 import app from "../../server/_globalRoutes";
+process.env.PORT = "4004"
+import index_server from "../../server/";
 import { User, Sound } from "@prisma/client"
-import fs from "fs"
 import { join } from "path";
-import formdata from "form-data"
 
 describe("sound routes tester", () => {
 
     const request = require("supertest")(app);
+    const index = require("supertest")(index_server);
     let user: User
     let sound: Sound
     let token: string

@@ -37,11 +37,10 @@ router
 
         user.getAll({ where: req.query, orderBy: { id_: "asc" } })
             .then((data) => { res.status(200).json(data); })
-            .catch((error: Error) => {
-                console.error(error);
-                res.status(500).json({ error: "InternalError", message: "Something wrong" });
-            });
-
+            // .catch((error: Error) => {
+            //     console.error(error);
+            //     res.status(500).json({ error: "InternalError", message: "Something wrong" });
+            // });
     })
 
     /**
