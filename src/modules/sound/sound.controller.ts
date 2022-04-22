@@ -10,9 +10,10 @@ import checkDTO from "../../middlewares/checkDTO";
 import { createSoundDTO } from "./sound.dto";
 const router: express.Router = require("express").Router();
 const sound = new soundService();
+import env from "../../env"
 
-let storage = new Storage({ projectId: "audiosetrecorder-2022", keyFilename: join(cwd(), ".cqx/keys/gs.json") })
-let bucket = storage.bucket("audioset-recorder")
+let storage = new Storage({ projectId: "audiosetrecorder-2022", apiEndpoint: env.STORAGE_API_ENDPOINT, keyFilename: join(cwd(), ".cqx/keys/gs.json") })
+let bucket = storage.bucket(env.STORAGE_BUCKET)
 
 let upload = multer({
     storage: multer.memoryStorage()
@@ -50,7 +51,7 @@ router
         blobStream.on('finish', async () => {
             // The public URL can be used to directly access the file via HTTP.
             const publicUrl = format(
-                `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+                `https://${env.STORAGE_API_ENDPOINT}/${bucket.name}/${blob.name}`
             );
 
             await bucket.file(filename).makePublic()

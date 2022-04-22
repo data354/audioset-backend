@@ -91,7 +91,7 @@ describe("sound routes tester", () => {
                 .post(`/sound/send`)
                 .set("X-Access-Token", token)
                 .set("Content-type", "multipart/form-data")
-                .attach("audio", join(__dirname, "sound.docs.json"), {filename: "testaudio"})
+                .attach("audio", join(__dirname, "sound.dto.ts"), {filename: "audio"})
                 .field("soundId", String(sound.id_))
                 .field("userId", String(user.id_))
                 .expect(201)

@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jest --coverage",
         "test:junit": "jest --ci --reporters=default --reporters=jest-junit",
-        "start:dev": "nodemon ./index.ts",
+        "start:dev": "NODE_ENV=dev nodemon ./index.ts",
         "start:debug": "DEBUG=* nodemon ./index.ts",
         "db:update": "prisma migrate dev && cqx update",
         "db:start": "docker-compose up -d soundSetApi_db_dev",
@@ -83,11 +83,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/author/soundSetApi.git"
+        "url": "git+https://github.com/dykoffi/soundSetApi.git"
     },
     "bugs": {
-        "url": "https://github.com/author/soundSetApi/issues"
+        "url": "https://github.com/dykoffi/soundSetApi/issues"
     },
-    "homepage": "git+https://github.com/author/soundSetApi#readme",
+    "homepage": "git+https://github.com/dykoffi/soundSetApi#readme",
     "license": "MIT"
 }
