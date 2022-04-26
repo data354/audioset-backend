@@ -10,7 +10,7 @@ import checkDTO from "../../middlewares/checkDTO";
 import { createSoundDTO } from "./sound.dto";
 const router: express.Router = require("express").Router();
 const sound = new soundService();
-import env from "../../env"
+import env from "../../configs/env"
 
 let storage = new Storage({ projectId: "audiosetrecorder-2022", apiEndpoint: env.STORAGE_API_ENDPOINT, keyFilename: join(cwd(), ".cqx/keys/gs.json") })
 let bucket = storage.bucket(env.STORAGE_BUCKET)

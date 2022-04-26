@@ -110,3 +110,4 @@ uploads
 .cqx/keys/gs.json
 junit.xml
 test.storage.ts
+test.firestore.ts
