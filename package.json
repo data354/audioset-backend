@@ -89,11 +89,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/dykoffi/soundSetApi.git"
+        "url": "git+https://github.com/data354/audioset-backend.git"
     },
     "bugs": {
-        "url": "https://github.com/dykoffi/soundSetApi/issues"
+        "url": "https://github.com/data354/audioset-backend/issues"
     },
-    "homepage": "git+https://github.com/dykoffi/soundSetApi#readme",
+    "homepage": "git+https://github.com/data354/audioset-backend#readme",
     "license": "MIT"
 }

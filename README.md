@@ -24,8 +24,9 @@ europe-docker.pkg.dev/audiosetrecorder-2022/eu.gcr.io
 
 
 ### For Begining
-1. Your dev database connection is define in **.env** file
+1. Type yarn install to install all dependencies you needed
 2. Define your model in **prisma/schema.prisma**
 3. Use **yarn db:start** to run your Dev BD instance
 4. Use **yarn db:update** to update API and database structure following your model in schema.prisma file
 5. Use **yarn start** to run project.
+6. Use **yarn test** to test project.
