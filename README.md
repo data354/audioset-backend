@@ -6,6 +6,7 @@ Adioset recorder is an application for collecting audio data for Baule to French
 - [Nodejs](https://nodejs.org/) >= 14.x
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker-compose](https://docs.docker.com/compose/)
+- [GPG](https://doc.ubuntu-fr.org/gnupg)
 
 ### Databases supported
 - [PostreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
@@ -22,8 +23,9 @@ Adioset recorder is an application for collecting audio data for Baule to French
 
 
 ### For Begining
-1. Type **yarn install** to install all dependencies you needed
-3. Run GCP Local storage with **docker-compose up -d gcp_storage_local**
+1. Use *gpc secrets.json.gpg* to decrypt the file wich contain environment variables
+2. Type **yarn install** to install all dependencies you needed
+3. Run GCP Local storage with **docker-compose up -d gcp_storage_local** (moking of google storage)
 4. Use **yarn db:start** to run your Dev BD instance
 5. Use **yarn db:update** to update API and database structure following your model in schema.prisma file and generate prisma client
 6. To fill database use **npx ts-node seeder.ts**
