@@ -29,10 +29,11 @@ router
 
     .use(checkToken("user"))
 
-    .use("/send", upload.single("audio"))
-    .use("/send", checkDTO(createSoundDTO))
+    .post("/send", upload.single("audio"))
+    .post("/send", checkDTO(createSoundDTO))
     .post("/send", async (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
+        //Return 400 error if no file has been uploaded
         if (!req.file) {
             res.status(400).send('No file uploaded.');
             return;
@@ -87,7 +88,7 @@ router
 
     .get("/begin/:userId", async (req: express.Request, res: express.Response) => {
 
-        sound.beginRecord(Number(req.params.userId))
+        sound.getNewAudio(Number(req.params.userId))
             .then((data) => { res.status(200).json(data); })
             .catch((error: Error) => {
                 console.error(error);

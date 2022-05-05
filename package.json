@@ -4,14 +4,12 @@
     "main": "./index.ts",
     "private": false,
     "scripts": {
-        "test": "jest --coverage",
+        "test": "NODE_ENV=test jest --coverage",
         "test:junit": "jest --ci --reporters=default --reporters=jest-junit",
-        "start:dev": "NODE_ENV=dev nodemon ./index.ts",
-        "start:debug": "DEBUG=* nodemon ./index.ts",
+        "start:dev": "NODE_ENV=local nodemon ./index.ts",
+        "start:debug": "NODE_ENV=local DEBUG=* nodemon ./index.ts",
         "db:update": "prisma migrate dev && cqx update",
-        "db:start": "docker-compose up -d soundSetApi_db_dev",
-        "compose:up": "docker-compose up -d soundSetApi",
-        "docker:build": "cqx build && DOCKER_BUILDKIT=1 docker build -t dykoffi/soundsetapi ./build && rm -rdf build"
+        "db:start": "docker-compose up -d soundSetApi_db_dev"
     },
     "dependencies": {
         "@google-cloud/firestore": "^5.0.2",
@@ -79,7 +77,7 @@
         "collectCoverageFrom": [
             "**/*.(t|j)s"
         ],
-        "coverageDirectory": "../coverage",
+        "coverageDirectory": "./coverage",
         "testEnvironment": "node"
     },
     "author": {

@@ -1,16 +1,13 @@
 /*eslint-env node*/
-
 import http from "http";
-import path from "path";
 import allApp from "./_globalRoutes";
 import db from "../configs/db";
 
+import env from "../configs/env"
+
 const server = http.createServer(allApp);
 
-require("dotenv").config({ path: path.resolve(process.cwd(), ".info.env") });
-
-const port = normalizePort(process.env.PORT || "8080");
-const apiName = process.env.API_NAME;
+const port = normalizePort(env.PORT);
 
 server.listen(port);
 server.on("listening", onListenning);
@@ -21,7 +18,6 @@ function normalizePort(val: string) {
     const port = parseInt(val, 10);
     if (isNaN(port)) { return val; }
     if (port >= 0) { return port; }
-    return false;
 }
 
 function onError(error: any) {
@@ -54,6 +50,7 @@ function onListenning() {
         .catch((err: Error) => { console.error(err); });
 }
 
-console.log(`${apiName} start on port ${port}`);
+
+console.log(`start on port ${port}`);
 
 export default server;
