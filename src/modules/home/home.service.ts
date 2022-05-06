@@ -1,11 +1,10 @@
 export default class HomeService {
-    constructor() { }
+  constructor() {}
 
-    /**
-     * Hello
-     */
-    public async Hello() {
-        return { message: "It's work" }
-    }
-
+  /**
+   * Hello
+   */
+  public async Hello() {
+    return { message: "It's work" };
+  }
 }

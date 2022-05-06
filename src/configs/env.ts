@@ -1,15 +1,14 @@
-import secret from "../../secrets.json"
+import secret from "../../secrets.json";
 
-let env: string
-let node_env = process.env.NODE_ENV
+let env: string;
+let node_env = process.env.NODE_ENV;
 
 if (node_env && Object.keys(secret).includes(node_env)) {
-    env = node_env
+  env = node_env;
 } else {
-    env = "local"
+  env = "local";
 }
 
+let secret_env = secret[env];
 
-let secret_env = secret[env]
-
-export default secret_env
+export default secret_env;
