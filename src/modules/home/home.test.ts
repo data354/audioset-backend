@@ -1,16 +1,14 @@
-import { API_URL } from "../../configs/constants";
+import app from "../../server/_globalRoutes";
 
 describe("Home routes tester", () => {
+  const supertest = require("supertest")(app);
 
-    const supertest = require("supertest")(API_URL);
+  it("/GET get test", async () => {
+    let res = await supertest
+      .get("/")
+      .expect("Content-Type", /json/)
+      .expect(200);
 
-    it("/GET get test", async () => {
-
-        let res = await supertest
-            .get("/")
-            .expect("Content-Type", /json/)
-
-        expect(res.status).not.toBe(500);
-
-    });
+    expect(res.status).not.toBe(500);
+  });
 });

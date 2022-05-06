@@ -1,10 +1,12 @@
-## cqx documentation for begining
+## Soundset API README
+
+Adioset recorder is an application for collecting audio data for Baule to French translation.
 
 ### Prerequises
 - [Nodejs](https://nodejs.org/) >= 14.x
-- [cqx](https://www.npmjs.com/package/cqx)
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker-compose](https://docs.docker.com/compose/)
+- [GPG](https://doc.ubuntu-fr.org/gnupg)
 
 ### Databases supported
 - [PostreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
@@ -13,9 +15,6 @@
 - [Sqlite](https://www.prisma.io/docs/concepts/database-connectors/sqlite)
 - [MongoDB](https://www.mongodb.com/)
 
-
-us-docker.pkg.dev/audiosetrecorder-2022/gcr.io
-europe-docker.pkg.dev/audiosetrecorder-2022/eu.gcr.io
 ### Documentation
 - [Prisma](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) For making good schema.
 - [Swagger](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#schemaObject) For making good api's documentation.
@@ -24,8 +23,11 @@ europe-docker.pkg.dev/audiosetrecorder-2022/eu.gcr.io
 
 
 ### For Begining
-1. Your dev database connection is define in **.env** file
-2. Define your model in **prisma/schema.prisma**
-3. Use **yarn db:start** to run your Dev BD instance
-4. Use **yarn db:update** to update API and database structure following your model in schema.prisma file
-5. Use **yarn start** to run project.
+1. Use *gpc secrets.json.gpg* to decrypt the file wich contain environment variables
+2. Type **yarn install** to install all dependencies you needed
+3. Create tree uploads/test at tho root and run GCP Local storage with **docker-compose up -d gcp_storage_local** (moking of google storage)
+4. Use **yarn db:start** to run your Dev BD instance
+5. Use **yarn db:update** to update API and database structure following your model in schema.prisma file and generate prisma client
+6. To fill database use **npx ts-node seeder.ts**
+7. Use **yarn start:dev** to run project.
+8. Use **yarn test** to test project.
